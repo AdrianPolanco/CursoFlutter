@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+
+class CounterScreen extends StatelessWidget {
+  const CounterScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    //Scaffold en Flutter es basicamente un Widget que nos da una interfaz para poner botones flotantes, barras, menus, etc.
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(153, 255, 255, 1),
+        title: const Center(
+            child: Text("Counter Screen",
+                style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)))),
+      ),
+      //Aqui usamos center para centrar la columna que tendra el Scaffold por hija, basicamente le estamos diciendo al body del Scaffold que tenga una columna centrada como hija
+      body: Center(
+        //Al usar Column, Flutter empezara a calcular las dimensiones de la pantalla del dispositivo para (supongo) saber en que dimensiones imprimira el contenido que especificamos, por tanto, aqui el Scaffold no puede ser const, ya que las dimensiones de las pantallas varian
+        child: Column(
+          //Centra a los hijos de la columna, o en caso de que el argumento no sea .center, los posiciona dependiendo del argumento
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
+              "10",
+              style: TextStyle(
+                  fontSize: 160,
+                  fontWeight: FontWeight.w300,
+                  color: Color.fromRGBO(153, 255, 255, 1)),
+            ),
+            Text(
+              "Cantidad de clicks",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w200),
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.plus_one),
+      ),
+    );
+  }
+}
