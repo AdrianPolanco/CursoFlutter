@@ -18,11 +18,12 @@ const List<Color> _colorThemes = [
 ];
 
 class AppTheme {
-  final int selectedColor;
-  final Brightness brit;
   AppTheme({this.selectedColor = 0, required this.brit})
       : assert(selectedColor >= 0 && selectedColor < _colorThemes.length,
             "The argument CANNOT BE higher tan the length of the list of colors");
+
+  final int selectedColor;
+  final Brightness brit;
 
   ThemeData theme() {
     return ThemeData(
