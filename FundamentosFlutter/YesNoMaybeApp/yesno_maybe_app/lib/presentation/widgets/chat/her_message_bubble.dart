@@ -13,7 +13,7 @@ class HerMessageBubble extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20), color: color.secondary),
-          child: Padding(
+          child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
               "How are u sweetie?",
