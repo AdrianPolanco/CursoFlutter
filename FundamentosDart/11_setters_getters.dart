@@ -18,7 +18,7 @@ class Square {
     return _side * _side;
   }
 
-//Usamos la palabra reservada set para establecer un setter en Dart, le damos un nombre, y como si fuera una funcion, usamos parentesis en donde pondremos los parametros que se vayan a usar
+//Usamos la palabra reservada set para establecer un setter en Dart, le damos un nombre, y como si fuera una funcion, usamos parentesis en donde pondremos los parametros que se vayan a usar, solo admiten un solo parametro
   set side(double value) {
     print("Setting the value....");
     //Lanzando una excepcion en Dart

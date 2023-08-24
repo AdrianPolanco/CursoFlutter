@@ -15,4 +15,21 @@ void main() {
   print("Front: ${pokemon["sprites"][1]}");
   print("Back: ${pokemon["sprites"][2]}");
   print(pokemon["sprites"]["artwork"]);
+  @Todo(who: "Adrian", what: "Learns Flutter")
+  void doSomething() {
+    print("Do something");
+  }
+
+  print(pokemon);
+
+  doSomething();
+}
+
+class Todo {
+  final String who;
+  final String what;
+
+  const Todo({required String who, required String what})
+      : this.who = who,
+        this.what = what;
 }

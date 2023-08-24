@@ -1,7 +1,7 @@
 void main() {
   //Lista en Dart, en ella, se pueden repetir valores
   final numbers = [0, 1, 2, 3, 4, 5, 6, 7, 7, 7, 8, 9, 10];
-  //Se puede usar .reversed para invertir el orden de los datos almacenados en la lista, algo a tener en cuenta es que al usar esta propiedad, no devolvera una lista con los valores invertidos sino un ITERABLE con los valores invertidos, y por tanto, en el proceso, se perderan los valores que se repitan para que solo sea uno de cada uno ya que en los ITERABLES no se admite repeticion de valores
+  //Se puede usar .reversed para invertir el orden de los datos almacenados en la lista, algo a tener en cuenta es que al usar esta propiedad, no devolvera una lista con los valores invertidos sino un ITERABLE con los valores invertidos. En los SETS no se admite repeticion de valores
   final reversedNumbers = numbers.reversed;
   //Aqui estamos filtrando los items de la lista number por los que sean igual o mayor a 5, por lo que devolvera un ITERABLE con los valores que cumplan esa condicion, seguido de esto, lo convertimos a un Set con .toSet()
   final GreaterThanFive = numbers.where((num) {

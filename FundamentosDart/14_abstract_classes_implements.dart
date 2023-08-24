@@ -1,3 +1,5 @@
+//Una DIFERENCIA CLAVE entre EXTENDS e IMPLEMENTS es que con EXTENDS heredas la clase en el sentido tradicional, junto a absolutamente todos sus miembros, publicos y privados, y en el caso de EXTENDS no estamos obligados a sobreescribir esos miembros usando @override. Mientras que IMPLEMENTS se usa para implementar interfaces (o mejor dicho clases abstractas ya que en Dart no hay interfaces explicitas como en C#), y aqui si estamos obligados a implementar los miembros publicos de tal clase usando @override, ya que usando IMPLEMENTS NO tenemos acceso a los miembros privados de dicha clase abstracta
+
 void main() {
   final myWind = WindPlant(initialEnergy: 100);
   final myNuclear = NuclearPlant(energyLeft: 1000);
