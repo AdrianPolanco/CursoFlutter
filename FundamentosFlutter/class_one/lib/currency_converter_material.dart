@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:class_one/mixins.dart';
 
-class CurrencyConverterMaterialPage extends StatelessWidget {
+class CurrencyConverterMaterialPage extends StatelessWidget
+    with CalculateMixin {
   const CurrencyConverterMaterialPage({super.key});
 
   @override
@@ -17,46 +20,55 @@ class CurrencyConverterMaterialPage extends StatelessWidget {
       home: Scaffold(
           backgroundColor: Colors.transparent,
           body: Container(
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             decoration: const BoxDecoration(
                 gradient: LinearGradient(colors: <Color>[
               Color.fromRGBO(255, 255, 255, 1),
               Color.fromRGBO(255, 255, 255, 1),
               Color.fromRGBO(178, 236, 254, 1),
               Color.fromRGBO(171, 235, 255, 1)
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-            child: const Center(
+            ], begin: Alignment.bottomRight, end: Alignment.topLeft)),
+            child: Center(
               child: Column(
                 //Las columnas solo toman el espacio el cual sus widgets hijos necesiten
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    "Currency converter",
+                  const Text(
+                    "Conversor de divisas",
                     //textScaleFactor: 2.5,
                     style: TextStyle(
                         color: Color.fromRGBO(125, 214, 247, 1),
                         fontSize: 45,
                         fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "0 ",
-                        textScaleFactor: 1,
-                        style: TextStyle(fontSize: 80),
+                      Container(
+                        margin: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(20),
+                        child: const Text(
+                          "0 ",
+                          textScaleFactor: 1,
+                          style: TextStyle(fontSize: 80),
+                        ),
                       ),
-                      Text(
-                        "USD",
-                        textScaleFactor: 1,
-                        style: TextStyle(fontSize: 40),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        child: const Text(
+                          "USD",
+                          textScaleFactor: 1,
+                          style: TextStyle(fontSize: 40),
+                        ),
                       ),
                     ],
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(vertical: 40),
                     child: SizedBox(
                       width: 250,
@@ -83,6 +95,38 @@ class CurrencyConverterMaterialPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(colors: <Color>[
+                          Color.fromRGBO(52, 206, 253, 1),
+                          Color.fromRGBO(48, 138, 255, 1)
+                        ]),
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          if (kDebugMode) print(Calcular(1, 2));
+                        },
+                        style: ElevatedButton.styleFrom(
+                            elevation: 50,
+                            backgroundColor: Colors.transparent,
+                            foregroundColor: Colors.white,
+                            minimumSize: const Size(double.infinity, 20),
+                            textStyle: const TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.w900)),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.monetization_on_sharp),
+                            SizedBox(width: 20),
+                            Text(
+                              "Calcular",
+                            ),
+                          ],
+                        )),
+                  )
                 ],
               ),
             ),
