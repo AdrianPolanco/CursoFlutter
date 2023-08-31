@@ -4,15 +4,17 @@ class MyGradientAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double _height;
   final String _title;
   final LinearGradient _gradient;
-
+  final List<Widget>? _actions;
   const MyGradientAppBar(
       {super.key,
       double height = 56,
+      List<Widget>? actions,
       required String title,
       required LinearGradient gradient})
       : _height = height,
         _title = title,
-        _gradient = gradient;
+        _gradient = gradient,
+        _actions = actions;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +24,29 @@ class MyGradientAppBar extends StatelessWidget implements PreferredSizeWidget {
         decoration: BoxDecoration(gradient: _gradient, boxShadow: const [
           BoxShadow(color: Color.fromARGB(255, 71, 71, 71), offset: Offset.zero)
         ]),
-        child: Center(
-            child: Text(
-          _title,
-          style: const TextStyle(
-              color: Color.fromARGB(255, 230, 245, 253),
-              fontSize: 45,
-              fontWeight: FontWeight.bold),
-        )));
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+                child: Text(
+              _title,
+              style: const TextStyle(
+                  color: Color.fromARGB(255, 230, 245, 253),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            )),
+            Container(
+              margin: const EdgeInsets.only(left: 35),
+              child: Row(
+                children: [
+                  for (Widget action in _actions!)
+                    Container(
+                        margin: const EdgeInsets.only(left: 20), child: action)
+                ],
+              ),
+            )
+          ],
+        ));
   }
 
   @override

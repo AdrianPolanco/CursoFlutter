@@ -22,11 +22,13 @@ class CurrencyConverterMaterialPage extends StatelessWidget
       home: Scaffold(
           //Puedo crear mis propios Widgets personalizados para aplicarlos en lugar de los Widgets por defecto, por ejemplo, MyAgriendAppBar es un widget creado por mí, el cual cree para poder aplicar un appbar que tenga degradado ya que el appbar normal no lo tiene. Puedo usar mi propio Widget aquí gracias a que implemento la interfaz PreferredSizedWidget, al igual que los appbar por defecto, por lo que aquí me permite utilizarla
           appBar: const MyGradientAppBar(
-              title: "Currency Converter App",
-              gradient: LinearGradient(colors: <Color>[
-                Color.fromRGBO(171, 235, 255, 1),
-                Color.fromRGBO(178, 236, 254, 1),
-              ], begin: Alignment.bottomRight, end: Alignment.topLeft)),
+            title: "Currency Converter App",
+            gradient: LinearGradient(colors: <Color>[
+              Color.fromRGBO(171, 235, 255, 1),
+              Color.fromRGBO(178, 236, 254, 1),
+            ], begin: Alignment.bottomRight, end: Alignment.topLeft),
+            actions: [Icon(Icons.access_alarms), Icon(Icons.ad_units)],
+          ),
           body: Container(
             padding: const EdgeInsets.all(10),
             decoration: const BoxDecoration(
