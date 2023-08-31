@@ -1,9 +1,11 @@
+import 'package:class_one/my_appbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:class_one/mixins.dart';
 
 class CurrencyConverterMaterialPage extends StatelessWidget
     with CalculateMixin {
+  //El super.key lo asigna por defecto incluso si no le especificamos al llamar al widget
   const CurrencyConverterMaterialPage({super.key});
 
   @override
@@ -18,10 +20,15 @@ class CurrencyConverterMaterialPage extends StatelessWidget
 
     return MaterialApp(
       home: Scaffold(
-          backgroundColor: Colors.transparent,
+          //Puedo crear mis propios Widgets personalizados para aplicarlos en lugar de los Widgets por defecto, por ejemplo, MyAgriendAppBar es un widget creado por mí, el cual cree para poder aplicar un appbar que tenga degradado ya que el appbar normal no lo tiene. Puedo usar mi propio Widget aquí gracias a que implemento la interfaz PreferredSizedWidget, al igual que los appbar por defecto, por lo que aquí me permite utilizarla
+          appBar: const MyGradientAppBar(
+              title: "Currency Converter App",
+              gradient: LinearGradient(colors: <Color>[
+                Color.fromRGBO(171, 235, 255, 1),
+                Color.fromRGBO(178, 236, 254, 1),
+              ], begin: Alignment.bottomRight, end: Alignment.topLeft)),
           body: Container(
             padding: const EdgeInsets.all(10),
-            margin: const EdgeInsets.all(10),
             decoration: const BoxDecoration(
                 gradient: LinearGradient(colors: <Color>[
               Color.fromRGBO(255, 255, 255, 1),
@@ -36,12 +43,12 @@ class CurrencyConverterMaterialPage extends StatelessWidget
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    "Conversor de divisas",
+                    "Cantidad en doláres",
                     //textScaleFactor: 2.5,
                     style: TextStyle(
                         color: Color.fromRGBO(125, 214, 247, 1),
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold),
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(
                     height: 25,
