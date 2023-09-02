@@ -3,6 +3,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:class_one/mixins.dart';
 
+class CurrencyConverterApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _CurrencyConverterAppState();
+  }
+}
+
+class _CurrencyConverterAppState extends State {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
+
 class CurrencyConverterMaterialPage extends StatelessWidget
     with CalculateMixin {
   //El super.key lo asigna por defecto incluso si no le especificamos al llamar al widget
@@ -17,6 +32,7 @@ class CurrencyConverterMaterialPage extends StatelessWidget
             style: BorderStyle.solid,
             strokeAlign: BorderSide.strokeAlignOutside),
         borderRadius: BorderRadius.all(Radius.elliptical(180, 180)));
+    final TextEditingController textEditingController = TextEditingController();
 
     return MaterialApp(
       home: Scaffold(
@@ -26,7 +42,8 @@ class CurrencyConverterMaterialPage extends StatelessWidget
             gradient: LinearGradient(colors: <Color>[
               Color.fromRGBO(171, 235, 255, 1),
               Color.fromRGBO(178, 236, 254, 1),
-            ], begin: Alignment.bottomRight, end: Alignment.topLeft),
+              Color.fromRGBO(178, 236, 254, 1),
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
             actions: [Icon(Icons.access_alarms), Icon(Icons.ad_units)],
           ),
           body: Container(
@@ -35,6 +52,7 @@ class CurrencyConverterMaterialPage extends StatelessWidget
                 gradient: LinearGradient(colors: <Color>[
               Color.fromRGBO(255, 255, 255, 1),
               Color.fromRGBO(255, 255, 255, 1),
+              Color.fromRGBO(178, 236, 254, 1),
               Color.fromRGBO(178, 236, 254, 1),
               Color.fromRGBO(171, 235, 255, 1)
             ], begin: Alignment.bottomRight, end: Alignment.topLeft)),
@@ -77,17 +95,18 @@ class CurrencyConverterMaterialPage extends StatelessWidget
                       ),
                     ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 40),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 40),
                     child: SizedBox(
                       width: 250,
                       child: TextField(
-                        keyboardType:
-                            TextInputType.numberWithOptions(decimal: true),
-                        style: TextStyle(
+                        controller: textEditingController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
+                        style: const TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0),
                         ),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 3, horizontal: 3),
                             label: Text("USD:"),
