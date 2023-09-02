@@ -1,5 +1,5 @@
 mixin CalculateMixin {
-  int Calcular(int a, int b) {
-    return a + b;
+  double fromPesoToDollar(pesosAmount, dollarsAmount) {
+    return double.parse((double.parse(pesosAmount) / 56.62).toStringAsFixed(2));
   }
 }

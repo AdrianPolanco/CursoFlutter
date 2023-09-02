@@ -4,48 +4,44 @@ import 'package:flutter/material.dart';
 import 'package:class_one/mixins.dart';
 
 class CurrencyConverterApp extends StatefulWidget {
+  const CurrencyConverterApp({super.key});
   @override
-  State<StatefulWidget> createState() {
-    return _CurrencyConverterAppState();
-  }
+  State<CurrencyConverterApp> createState() => _CurrencyConverterAppState();
 }
 
-class _CurrencyConverterAppState extends State {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
-}
-
-class CurrencyConverterMaterialPage extends StatelessWidget
+class _CurrencyConverterAppState extends State<CurrencyConverterApp>
     with CalculateMixin {
   //El super.key lo asigna por defecto incluso si no le especificamos al llamar al widget
-  const CurrencyConverterMaterialPage({super.key});
+  double _result = 0.0;
+  final MyGradientAppBar _gradientAppBar = const MyGradientAppBar(
+    title: "Currency Converter App",
+    gradient: LinearGradient(colors: <Color>[
+      Color.fromRGBO(171, 235, 255, 1),
+      Color.fromRGBO(178, 236, 254, 1),
+      Color.fromRGBO(178, 236, 254, 1),
+    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+    actions: [Icon(Icons.access_alarms), Icon(Icons.ad_units)],
+  );
+  final _border = const OutlineInputBorder(
+      borderSide: BorderSide(
+          color: Color.fromRGBO(0, 0, 0, 1),
+          width: 2,
+          style: BorderStyle.solid,
+          strokeAlign: BorderSide.strokeAlignOutside),
+      borderRadius: BorderRadius.all(Radius.elliptical(180, 180)));
+  final TextEditingController textEditingController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+  }
 
+//IMPORTANTE: No puedes llamar funciones asincronar en el metodo build, sino fuera, ya que el metodo build puede ser llamado muchas veces conforme a los Hz de la pantalla del celular, si por ejemplo un celular tiene 120Hz, la funcion build podria ser llamada hasta 120 veces por segundo, por tanto, por cuestiones de rendimiento y optimización, debemos evitar usar funciones asincronas (ya que se harian demasiadas solicitudes en un segundo) e intentar mantener la funcion build lo más liviana posible
   @override
   Widget build(BuildContext context) {
-    const border = OutlineInputBorder(
-        borderSide: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 2,
-            style: BorderStyle.solid,
-            strokeAlign: BorderSide.strokeAlignOutside),
-        borderRadius: BorderRadius.all(Radius.elliptical(180, 180)));
-    final TextEditingController textEditingController = TextEditingController();
-
     return MaterialApp(
       home: Scaffold(
-          //Puedo crear mis propios Widgets personalizados para aplicarlos en lugar de los Widgets por defecto, por ejemplo, MyAgriendAppBar es un widget creado por mí, el cual cree para poder aplicar un appbar que tenga degradado ya que el appbar normal no lo tiene. Puedo usar mi propio Widget aquí gracias a que implemento la interfaz PreferredSizedWidget, al igual que los appbar por defecto, por lo que aquí me permite utilizarla
-          appBar: const MyGradientAppBar(
-            title: "Currency Converter App",
-            gradient: LinearGradient(colors: <Color>[
-              Color.fromRGBO(171, 235, 255, 1),
-              Color.fromRGBO(178, 236, 254, 1),
-              Color.fromRGBO(178, 236, 254, 1),
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-            actions: [Icon(Icons.access_alarms), Icon(Icons.ad_units)],
-          ),
+          //Puedo crear mis propios Widgets personalizados para aplicarlos en lugar de los Widgets por defecto, por ejemplo, MyGradientAppBar es un widget creado por mí, el cual cree para poder aplicar un appbar que tenga degradado ya que el appbar normal no lo tiene. Puedo usar mi propio Widget aquí gracias a que implemento la interfaz PreferredSizedWidget, al igual que los appbar por defecto, por lo que aquí me permite utilizarla
+          appBar: _gradientAppBar,
           body: Container(
             padding: const EdgeInsets.all(10),
             decoration: const BoxDecoration(
@@ -79,10 +75,10 @@ class CurrencyConverterMaterialPage extends StatelessWidget
                       Container(
                         margin: const EdgeInsets.all(10),
                         padding: const EdgeInsets.all(20),
-                        child: const Text(
-                          "0 ",
+                        child: Text(
+                          "$_result",
                           textScaleFactor: 1,
-                          style: TextStyle(fontSize: 80),
+                          style: const TextStyle(fontSize: 80),
                         ),
                       ),
                       Container(
@@ -106,20 +102,21 @@ class CurrencyConverterMaterialPage extends StatelessWidget
                         style: const TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0),
                         ),
-                        decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                        decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 3, horizontal: 3),
-                            label: Text("USD:"),
+                            label: const Text("RD"),
                             hintText: "Introduce doláres",
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.monetization_on_outlined,
                               fill: 1,
                             ),
-                            suffixIconColor: Color.fromRGBO(125, 214, 247, 1),
+                            suffixIconColor:
+                                const Color.fromRGBO(125, 214, 247, 1),
                             filled: true,
                             fillColor: Colors.transparent,
-                            focusedBorder: border,
-                            enabledBorder: border),
+                            focusedBorder: _border,
+                            enabledBorder: _border),
                       ),
                     ),
                   ),
@@ -135,7 +132,10 @@ class CurrencyConverterMaterialPage extends StatelessWidget
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: ElevatedButton(
                         onPressed: () {
-                          if (kDebugMode) print(Calcular(1, 2));
+                          setState(() {
+                            String pesos = textEditingController.value.text;
+                            _result = fromPesoToDollar(pesos, _result);
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                             elevation: 50,

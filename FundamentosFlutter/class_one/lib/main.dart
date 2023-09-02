@@ -11,6 +11,6 @@ class MyApp extends StatelessWidget {
   //const MyApp({String? key}) : super(key: key)
   @override
   Widget build(BuildContext context) {
-    return const CurrencyConverterMaterialPage();
+    return const CurrencyConverterApp();
   }
 }
