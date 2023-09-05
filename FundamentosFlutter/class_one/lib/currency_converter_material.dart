@@ -30,12 +30,37 @@ class _CurrencyConverterAppState extends State<CurrencyConverterApp>
           strokeAlign: BorderSide.strokeAlignOutside),
       borderRadius: BorderRadius.all(Radius.elliptical(180, 180)));
   final TextEditingController textEditingController = TextEditingController();
+
+  //Todos estos metodos sobreescritos tienen que ver con el "ciclo de vida de los Widgets"
   @override
   void initState() {
-    super.initState();
+    super.initState(); //Se ejecuta primero que el constructor
+  }
+
+  @override
+  void dispose() {
+    textEditingController
+        .dispose(); //Usamos el dispose para eliminar el widget del arbol de widgets y con eso liberar y limpiar recursos de forma adecuada, se manda a llamar automaticamente al, por ejemplo, cambiar de vista o eliminar una vista, se usan especialmente al trabajar con controladores, por ejemplo: TextEditingController
+    super.dispose();
+  }
+
+//Se usa para dar instrucciones especificas cuando las dependencias del Widget cambian (i.e. Cuando por ejemplo los datos que arroja una fuente de datos externa como una API se actualizan), no cambia las propiedades del Widget en sí
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+//Se usa para dar instrucciones especificas cuando las propiedades del Widget cambian, creando una nueva instancia del Widget padre
+  @override
+  void didUpdateWidget(covariant CurrencyConverterApp oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
   }
 
 //IMPORTANTE: No puedes llamar funciones asincronar en el metodo build, sino fuera, ya que el metodo build puede ser llamado muchas veces conforme a los Hz de la pantalla del celular, si por ejemplo un celular tiene 120Hz, la funcion build podria ser llamada hasta 120 veces por segundo, por tanto, por cuestiones de rendimiento y optimización, debemos evitar usar funciones asincronas (ya que se harian demasiadas solicitudes en un segundo) e intentar mantener la funcion build lo más liviana posible
+
+//El metodo build sirve para renderizar los componentes o widgets en pantalla
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -106,7 +131,7 @@ class _CurrencyConverterAppState extends State<CurrencyConverterApp>
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 3, horizontal: 3),
                             label: const Text("RD"),
-                            hintText: "Introduce doláres",
+                            hintText: "Introduce pesos dominicanos",
                             prefixIcon: const Icon(
                               Icons.monetization_on_outlined,
                               fill: 1,
