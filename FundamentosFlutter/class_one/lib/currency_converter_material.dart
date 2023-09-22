@@ -47,18 +47,16 @@ class _CurrencyConverterAppState extends State<CurrencyConverterApp>
 //Se usa para dar instrucciones especificas cuando las dependencias del Widget cambian (i.e. Cuando por ejemplo los datos que arroja una fuente de datos externa como una API se actualizan), no cambia las propiedades del Widget en sí
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
 
 //Se usa para dar instrucciones especificas cuando las propiedades del Widget cambian, creando una nueva instancia del Widget padre
   @override
   void didUpdateWidget(covariant CurrencyConverterApp oldWidget) {
-    // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
   }
 
-//IMPORTANTE: No puedes llamar funciones asincronar en el metodo build, sino fuera, ya que el metodo build puede ser llamado muchas veces conforme a los Hz de la pantalla del celular, si por ejemplo un celular tiene 120Hz, la funcion build podria ser llamada hasta 120 veces por segundo, por tanto, por cuestiones de rendimiento y optimización, debemos evitar usar funciones asincronas (ya que se harian demasiadas solicitudes en un segundo) e intentar mantener la funcion build lo más liviana posible
+//IMPORTANTE: No puedes llamar funciones asincronas en el metodo build, sino fuera, ya que el metodo build puede ser llamado muchas veces conforme a los Hz de la pantalla del celular, si por ejemplo un celular tiene 120Hz, la funcion build podria ser llamada hasta 120 veces por segundo, por tanto, por cuestiones de rendimiento y optimización, debemos evitar usar funciones asincronas (ya que se harian demasiadas solicitudes en un segundo) e intentar mantener la funcion build lo más liviana posible
 
 //El metodo build sirve para renderizar los componentes o widgets en pantalla
   @override
