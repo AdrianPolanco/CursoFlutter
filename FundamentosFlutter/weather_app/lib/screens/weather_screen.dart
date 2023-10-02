@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:weather_app/widgets/additional_info.dart';
 import 'package:weather_app/widgets/hourly_forecast_item.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -162,10 +163,30 @@ class _WeatherScreen extends State<WeatherScreen> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 25,
             ),
-            const Placeholder(
-              fallbackHeight: 150,
+            const Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Additional information",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 25))),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                AdditionalInfoItem(
+                    icon: Icons.water_drop,
+                    infoTitle: "Humidity",
+                    numberInfo: 94),
+                AdditionalInfoItem(
+                    icon: Icons.air, infoTitle: "Wind speed", numberInfo: 7.67),
+                AdditionalInfoItem(
+                    icon: Icons.beach_access,
+                    infoTitle: "Pressure",
+                    numberInfo: 1006)
+              ],
             )
           ],
         ),
