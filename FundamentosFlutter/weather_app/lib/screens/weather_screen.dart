@@ -1,8 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:weather_app/widgets/additional_info.dart';
 import 'package:weather_app/widgets/hourly_forecast_item.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/services.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
@@ -12,6 +14,17 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreen extends State<WeatherScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future getCurrentWeather() async {
+    http.get(Uri.parse(
+        "https://api.openweathermap.org/data/2.5/weather?q=cityName&appid={dotenv.env['API_KEY']}"));
+    print(dotenv.env["API_KEY"]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +41,7 @@ class _WeatherScreen extends State<WeatherScreen> {
               },*/
           IconButton(
             onPressed: () {
-              print("Refrescando....");
+              getCurrentWeather();
             },
             icon: Icon(Icons.refresh),
             padding: const EdgeInsets.all(16),
